@@ -1,0 +1,34 @@
+﻿@model Beg2.Models.AuthentificationData
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Authentification data</title>
+</head>
+<body>
+	<div>
+		AUTH >_<
+		@using (Html.BeginForm())
+		{
+			@Html.ValidationSummary()
+			<p>Login: @Html.TextBoxFor(x => x.login)</p>
+			<p>Password: @Html.TextBoxFor(x => x.password)</p>
+			<p>
+				Remember me: @Html.DropDownListFor(x => x.remember, new[]
+						{
+							new SelectListItem() {Text="Yes", Value = Boolean.TrueString},
+							new SelectListItem() {Text="No", Value = Boolean.FalseString}
+						}
+						)
+			</p>
+			<input type="submit" value="Try auth" />
+		}
+	</div>
+</body>
+</html>
