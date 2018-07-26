@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Beg2.Models;
+
+using Beg2.Entity_framework.DataModel;
+using Beg2.Entity_framework.Contexts;
+
 namespace Beg2.Controllers
 {
     public class HomeController : Controller
@@ -12,7 +16,16 @@ namespace Beg2.Controllers
         public ViewResult Index()
         {
 			string dt = DateTime.Now.ToLongDateString();
-			ViewBag.datetime_now = dt;
+			string write = "";
+
+			var db = new DataModelContext("public");
+			
+			foreach (var item in db.Users)
+			{
+				write += item.Login + " ";
+			}
+			ViewBag.datetime_now = write;
+
 			return View();
         }
 
@@ -27,7 +40,15 @@ namespace Beg2.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				return View("User", authData);
+				DataModelContext db = new DataModelContext("public");
+				//if (db.Users.FirstOrDefault(i => i.Login == authData.login) != null)
+				//{
+					return View("User", authData);
+				//}
+				//else
+				//{
+				//	return View();
+				//}
 			}
 			else
 			{

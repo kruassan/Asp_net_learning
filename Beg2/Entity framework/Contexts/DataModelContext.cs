@@ -4,24 +4,27 @@ using System.Linq;
 using System.Web;
 
 using System.Data.Entity;
+using Beg2.Entity_framework.DataModel;
 
 namespace Beg2.Entity_framework.Contexts
 {
 	public class DataModelContext : DbContext
 	{
-		public DataModelContext() : base("PostgreSql")
-		{
+		private string schema;
 
-		}
-		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		public DataModelContext(string schema) : base("AppDatabaseConnectionString")
 		{
-			base.OnModelCreating(modelBuilder); // I had removed this
-												/// Rest of on model creating here.
+			this.schema = schema;
 		}
 
+		protected override void OnModelCreating(DbModelBuilder builder)
+		{
+			builder.HasDefaultSchema(this.schema);
+			base.OnModelCreating(builder);
+		}
 
+		public DbSet<uslstbl> uslstbls { get; set; }
 
-
-
+		public DbSet<User> Users { get; set; }
 	}
 }
