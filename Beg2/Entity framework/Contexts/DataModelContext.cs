@@ -23,8 +23,8 @@ namespace Beg2.Entity_framework.Contexts
 			base.OnModelCreating(builder);
 		}
 
-		public DbSet<uslstbl> uslstbls { get; set; }
-
 		public DbSet<User> Users { get; set; }
+
+		public DbSet<News> Newss { get; set; }
 	}
 }

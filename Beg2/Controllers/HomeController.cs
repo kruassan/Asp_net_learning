@@ -16,15 +16,10 @@ namespace Beg2.Controllers
         public ViewResult Index()
         {
 			string dt = DateTime.Now.ToLongDateString();
-			string write = "";
 
-			var db = new DataModelContext("public");
-			
-			foreach (var item in db.Users)
-			{
-				write += item.Login + " ";
-			}
-			ViewBag.datetime_now = write;
+			DataModelContext context = new DataModelContext("public");
+
+			ViewBag.showing_data = context.Newss.First(i => i.Id == 1).Content;
 
 			return View();
         }

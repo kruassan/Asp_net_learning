@@ -6,6 +6,8 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using System.Threading.Tasks;
+
 namespace Beg2.Entity_framework.DataModel
 {
 	[Serializable]
@@ -26,5 +28,6 @@ namespace Beg2.Entity_framework.DataModel
 
 		public long? Id { get; set; }
 
+		
 	}
 }
